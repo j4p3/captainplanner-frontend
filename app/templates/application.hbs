@@ -1,3 +1,16 @@
-<h2>Welcome to Ember.js</h2>
+<section>
+    <h1>Test Frontend</h1>
+	<ul>
+		<h3>Place List: </h3>
+		{{#each model}}
+		<li>{{#linkTo 'item' this}}{{place.name}}{{/linkTo}}</li>
+		{{/each}}
+	</ul>
+</section>
+<section id="deets">
+	{{outlet}}
+</section>
+<section id="map">
+	<div id="map-canvas" class="map"></div>
+</section>
 
-{{outlet}}
