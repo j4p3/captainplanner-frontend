@@ -1,8 +1,29 @@
-<section>
-    <h1>Test Frontend: Application</h1>
-    {{#linkTo "index"}}Index{{/linkTo}}
-    {{#linkTo "itinerary"}}Itinerary{{/linkTo}}
-</section>
+<nav class="row">
+  <div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <li>
+          	{{#linkTo 'index'}}<span id="logo"></span>{{/linkTo}}
+			</li>
+          <li class="active" id="title">
+          	{{#linkTo 'index'}}Captain Planner{{/linkTo}}
+            <span class="navbar-unread">beta!</span>
+          </li>
+          <li><a href="#">about us</a></li>
+          <li>
+          	{{#linkTo 'itinerary'}}plan a trip{{/linkTo}}
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+            <a id='feedback' href="#" onclick="BetaDialog.popDialog()">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
 <section id="outlet">
 	{{outlet}}
 </section>

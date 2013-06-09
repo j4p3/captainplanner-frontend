@@ -5,6 +5,10 @@ App.initMap = function () {
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer();
 
+  $("#map-canvas").css('height', '350px');
+  $("#map-canvas").css('width', '800px');
+
+
   //  MAP OPTIONS
   var myOptions = {
     center: new google.maps.LatLng(App.day.items[0].place.lat, App.day.items[0].place.lng),

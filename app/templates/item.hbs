@@ -1,4 +1,29 @@
-<span><b>{{place.name}}</b></span>
-<p><i>{{place.description}}</i></p>
-<img {{bindAttr src="place.img_url"}} style="height:100px; width: 100px;"/>
+<div class="place-box">
+<div class="place" data-toggle="collapse" data-target="#demo-place1">
+  <span class="blurb">
+    <h1>{{place.name}}</h1>
+    <p>{{place.description}}</p>
+  </span>
+  <div class="place-detail" id="demo-place1">
+    <div class="actions">
+      <h3>More Info</h3>
+      <ul>
+        <li>{{place.place_type.name}}</li>
+        {{#each place.place_subtypes}}
+        	<li>{{name}}</li>
+        {{/each}}
+        {{#if place.website}}
+        	<li>{{place.website}}</li>
+        {{/if}}
+      </ul>
+      <button class="action-example">Send to my Email</button>
+      <button class="utility-example">Share on Facebook</button>
+    </div>
+    <div class="map" id="map-canvas">
+    </div>
+  </div>
+</div>
+</div>
+
+    
 {{log this}}
