@@ -1,16 +1,10 @@
 <section>
-    <h1>Test Frontend</h1>
-	<ul>
-		<h3>Place List: </h3>
-		{{#each model}}
-		<li>{{#linkTo 'item' this}}{{place.name}}{{/linkTo}}</li>
-		{{/each}}
-	</ul>
+    <h1>Test Frontend: Application</h1>
+    {{#linkTo "index"}}Index{{/linkTo}}
+    {{#linkTo "itinerary"}}Itinerary{{/linkTo}}
 </section>
-<section id="deets">
+<section id="outlet">
 	{{outlet}}
 </section>
-<section id="map">
-	<div id="map-canvas" class="map"></div>
-</section>
+{{log this}}
 

@@ -1,9 +1,10 @@
-<section id="place-list">
-  <h1>Itinerary</h1>
-  {{model}}
-  {{#each model}}
-    {{item}}
-    {{items}}
-    {{place.id}}
-  {{/each}}
+<section>
+	<h2>Itinerary</h2>
+	<span>{{#linkTo "map"}}Map{{/linkTo}}</span>
+	<span>{{#linkTo "list"}}List{{/linkTo}}</span>
 </section>
+<section>
+	{{outlet}}
+</section>
+{{view App.EmailView}}
+{{log this}}

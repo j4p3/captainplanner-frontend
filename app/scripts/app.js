@@ -6,5 +6,8 @@ App = Ember.Application.create({ LOG_TRANSITIONS: true });
 require('app/scripts/models/*');
 require('app/scripts/routes/*');
 require('app/scripts/components/*');
-// require('app/scripts/controllers/*');
-// require('app/scripts/views/*');
+require('app/scripts/controllers/*');
+require('app/scripts/views/*');
+
+App.day = new App.Itinerary;
+App.day.load();
