@@ -120,6 +120,10 @@ a {
 
 //	general presentation layouts for demo
 
+nav {
+	@include span-columns(12);
+}
+
 #map-canvas {
 	width: 800px;
 	height: 350px;
@@ -136,6 +140,10 @@ a {
 body {
 	@include outer-container;
 	background-image: url("../../images/light_wool.png");
+}
+
+body.fuck-normalize {
+	margin:auto;
 }
 
 div.hero-unit {
