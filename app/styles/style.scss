@@ -43,43 +43,11 @@
 
 //	v0.1.0 css hackery styles
 
-section.interface {
-	@include span-columns(12);
-	margin: 1em 0;
-	section.email {
-		@include span-columns(3 of 12);
-		@include shift(1);
-		input {
-			@include span-columns(3 of 3);
-		}
-		button {
-			@include button;
-		}
-	}
-}
-
-footer {
-	@include span-columns(12);
-	padding: 2em 0;
-	section.email {
-		@include span-columns(6 of 12);
-		@include shift(3);
-		button {
-			@include span-columns(6 of 6);
-			@include important-button;
-		}
-		input {
-			@include span-columns(6 of 6);	
-		}
-	}
-}
-
-
 
 button.top-tab {
-	@include span-columns(3 of 12);
-	@include shift(1);
-	margin-top: 45px;
+  width: 200px;
+  margin: 30px;
+  float:left;
 }
 
 a {
@@ -117,6 +85,43 @@ a {
   font-weight: bold;
   color:red;
 }
+
+section.interface {
+	@include span-columns(12);
+	margin: 1em 0;
+	button {
+		@include important-button;
+		@include span-columns(3 of 12);
+		@include shift(1);
+	}
+	section.email {
+		@include span-columns(3 of 12);
+		@include shift(1);
+		input {
+			@include span-columns(3 of 3);
+		}
+		button {
+			@include button;
+		}
+	}
+}
+
+footer {
+	@include span-columns(12);
+	padding: 2em 0;
+	section.email {
+		@include span-columns(6 of 12);
+		@include shift(3);
+		button {
+			@include span-columns(6 of 6);
+			@include important-button;
+		}
+		input {
+			@include span-columns(6 of 6);	
+		}
+	}
+}
+
 
 //	general presentation layouts for demo
 
@@ -172,17 +177,17 @@ input.email-example {
 //	places
 
 div.place {
-	@include span-columns(12);
+	@include span-columns(10);
 	padding: 1em 2em;
 	margin-top: 1em;
 	:last-child { margin-bottom: 1em; }
 	img {
-		@include span-columns(2 of 12);
+		@include span-columns(2 of 10);
 		@extend .img-circle;
 	}
 	.blurb {
-		@include span-columns(10 of 12);
-		p { color: $gray; }
+		p { color: $base;
+		}
 	}
 	cursor: pointer;
 	@include border-radius(6px);
@@ -194,6 +199,27 @@ div.place {
 		.blurb > h1 { color: $firm; }
 	}
 }
+.arrow {
+			margin-top:3em;
+			width: 0;
+			height: 0;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+			// @include span-columns(2 of 10);
+			float:right;
+			&.up {
+				border-bottom: 50px solid $base;
+				&:hover {
+					border-bottom: 50px solid $firm;
+				}
+			}
+			&.down {
+				border-top: 50px solid $base;
+				&:hover {
+					border-top: 50px solid $firm;
+				}
+			}
+		}
 
 div.place-box {
 	margin-top:2em;

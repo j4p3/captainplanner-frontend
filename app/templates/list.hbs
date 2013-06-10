@@ -2,21 +2,20 @@
 	{{#each model}}
 		{{#linkTo 'item' this}}
 		<div class="place">
-	      <img {{bindAttr src="place.img_url"}} style="height:130px; width: 130px;"/>	      <span class="blurb">
+	      <img {{bindAttr src="place.img_url"}} style="height:130px; width: 130px;"/>
+	      <div class="blurb">
 	        <h1>{{place.name}}</h1>
 	        <p>
 	        	{{#if place.description}}
 	        		{{place.description}}
 	        	{{else}}
-	        		{{#each place.reviews}}
-	        			{{text}}
-	        		{{/each}}
+	        		"{{place.reviews.1.text}}"
 	        	{{/if}}
 	        </p>
-	        <span {{action shiftUp id target="App.day"}}> [move up]</span>
-			<span {{action shiftDown id target="App.day"}}> [move down]</span>
-	      </span>
+	      </div>
 	    </div>
 		{{/linkTo}}
+		<span class="arrow up" {{action shiftUp id target="App.day"}}></span>
+		<span class="arrow down" {{action shiftDown id target="App.day"}}></span>
 	{{/each}}
 </section>

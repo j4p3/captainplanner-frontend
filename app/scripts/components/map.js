@@ -20,8 +20,8 @@ App.initMap = function () {
   App.map = new google.maps.Map($("#map-canvas")[0],
       myOptions);
   directionsDisplay.setMap(App.map);
-  var latLng = new google.maps.LatLng;
 
+  var latLng = new google.maps.LatLng;
   App.day.items.forEach( function (item) {
     console.log("setting map marker");
     latLng = new google.maps.LatLng(item.place.lat, item.place.lng)

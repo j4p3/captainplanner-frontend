@@ -58,6 +58,8 @@ App.Itinerary = Ember.Object.extend({
       items[destination] = items[itemIndex];
       items[itemIndex] = tmp;
     }
+    App.Router.router.transitionTo('map');
+    App.Router.router.transitionTo('list');
   },
 
   submit: function () {

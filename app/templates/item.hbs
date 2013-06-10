@@ -9,19 +9,21 @@
       <h3>More Info</h3>
       <ul>
         <li>{{place.place_type.name}}</li>
+        {{#if place.place_subtypes}}
         {{#each place.place_subtypes}}
-        	<li>{{name}}</li>
+          <li>{{name}}</li>
         {{/each}}
+        {{/if}}
         {{#if place.website}}
-        	<li>{{place.website}}</li>
+        	<li><a {{bindAttr href=place.website}}><b>website</b></a></li>
+        {{/if}}
+        {{#if place.reviews.1.author_name}}
+        <li><b>{{place.reviews.1.author_name}}said:</b> {{place.reviews.1.text}}</li>
+        {{/if}}
+        {{#if place.reviews.2.author_name}}
+        <li><b>{{place.reviews.2.author_name}}said:</b> {{place.reviews.2.text}}</li>
         {{/if}}
       </ul>
-      {{#each place.reviews}}
-      <span>
-        {{author_name}}
-        {{text}}
-      </span>
-      {{/each}}
       <button class="action-example">Send to my Email</button>
       <button class="utility-example">Share on Facebook</button>
     </div>
