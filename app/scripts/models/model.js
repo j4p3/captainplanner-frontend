@@ -64,15 +64,9 @@ App.Itinerary = Ember.Object.extend({
 
   submit: function () {
     console.log("delivering itinerary to backend");
-    data = App.day.constructPost();
-      $.post({
-      url: "http://captain-planner-dev.herokuapp.com/mvp/email",
-      data: data,
-      dataType: "json"
-    });
-  },
-  constructPost: function () {
-    var requestData = JSON.stringify({
+    $.post({
+    url: "http://captain-planner-dev.herokuapp.com/mvp/email",
+    data: JSON.stringify({
       email: App.EmailView.email,
       itinerary: {
         days: {
@@ -104,7 +98,12 @@ App.Itinerary = Ember.Object.extend({
           ]
         }
       }
-    });
+    }),
+    dataType: "json"
+  });
+  },
+  constructPost: function () {
+    
     console.log("requesting " + requestData)
     return requestData;
   }
