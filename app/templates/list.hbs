@@ -1,11 +1,18 @@
-<h3>Place List:</h3>
 <section id="place-list">
 	{{#each model}}
 		{{#linkTo 'item' this}}
 		<div class="place">
 	      <img {{bindAttr src="place.img_url"}} style="height:130px; width: 130px;"/>	      <span class="blurb">
 	        <h1>{{place.name}}</h1>
-	        <p>{{place.description}}</p>
+	        <p>
+	        	{{#if place.description}}
+	        		{{place.description}}
+	        	{{else}}
+	        		{{#each place.reviews}}
+	        			{{text}}
+	        		{{/each}}
+	        	{{/if}}
+	        </p>
 	        <span {{action shiftUp id target="App.day"}}> [move up]</span>
 			<span {{action shiftDown id target="App.day"}}> [move down]</span>
 	      </span>

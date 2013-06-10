@@ -1,10 +1,11 @@
-<section>
+<section class="interface">
 	<h2>Customize your Itinerary!</h2>
 	{{#linkTo 'map'}}<button class="action-example top-tab">Map</button>{{/linkTo}}
 	{{#linkTo 'list'}}<button class="action-example top-tab">List</button>{{/linkTo}}
+	{{view App.EmailView}}
 </section>
 <section>
 	{{outlet}}
 </section>
-{{view App.EmailView}}
+<footer>{{view App.EmailView}}</footer>
 {{log this}}

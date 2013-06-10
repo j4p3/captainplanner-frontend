@@ -1,5 +1,6 @@
-<h3>Email</h3>
-<form>
+<section class="email">
+<form class="toEmail">
 {{view Ember.TextField valueBinding="App.EmailView.email" classBinding="emailExample"}}
-<div {{action submit target="App.day"}}>Submit</div>
+<button {{action submit target="App.day"}}>Send to Email</button>
 </form>
+</section>

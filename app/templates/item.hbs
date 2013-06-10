@@ -16,14 +16,23 @@
         	<li>{{place.website}}</li>
         {{/if}}
       </ul>
+      {{#each place.reviews}}
+      <span>
+        {{author_name}}
+        {{text}}
+      </span>
+      {{/each}}
       <button class="action-example">Send to my Email</button>
       <button class="utility-example">Share on Facebook</button>
     </div>
-    <div class="map" id="map-canvas">
+    <div id="detail-map-canvas">
     </div>
   </div>
 </div>
 </div>
 
-    
+<script type="text/javascript">
+	App.InitMapDetail();
+</script>
+
 {{log this}}

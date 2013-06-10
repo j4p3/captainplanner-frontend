@@ -1,5 +1,5 @@
 //	import libraries & modules
-@import 'bootstrap/bootstrap';
+@import 'bootstrap';
 @import 'flat-ui';
 @import 'bourbon/bourbon';
 @import 'neat/neat';
@@ -39,6 +39,83 @@
 	-moz-filter: blur(5px);
 	-o-filter: blur(5px);
 	-ms-filter: blur(5px);
+}
+
+//	v0.1.0 css hackery styles
+
+section.interface {
+	@include span-columns(12);
+	margin: 1em 0;
+	section.email {
+		@include span-columns(3 of 12);
+		@include shift(1);
+		input {
+			@include span-columns(3 of 3);
+		}
+		button {
+			@include button;
+		}
+	}
+}
+
+footer {
+	@include span-columns(12);
+	padding: 2em 0;
+	section.email {
+		@include span-columns(6 of 12);
+		@include shift(3);
+		button {
+			@include span-columns(6 of 6);
+			@include important-button;
+		}
+		input {
+			@include span-columns(6 of 6);	
+		}
+	}
+}
+
+
+
+button.top-tab {
+	@include span-columns(3 of 12);
+	@include shift(1);
+	margin-top: 45px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hero-unit {
+  margin: 20px;
+}
+
+.buttons {
+  margin:auto;
+  width: 400px;
+}
+
+.image {
+  border-radius: 15px;
+  background-image: url("../../images/hong_kong.jpg");
+  background-position: center;
+  background-size: cover;
+  padding: 30px; 
+}
+
+#detail-map-canvas {
+  height:200px;
+  width: 240px;
+  float:right;
+}
+
+.toEmail > input {
+  height:35px;
+}
+
+.active {
+  font-weight: bold;
+  color:red;
 }
 
 //	general presentation layouts for demo
@@ -152,8 +229,8 @@ div.place-box {
 	background-image: url("../../images/logo.png");
 	background-repeat: no-repeat;
 	background-size: contain;
-	height: 70px;
-	width: 45px;
+	height: 40px;
+	width: 40px;
 	display:block;
 }
 nav.mobile {

@@ -67,3 +67,24 @@ App.initMap = function () {
 
   getRoute();
 }
+
+App.InitMapDetail = function () {
+  console.log("initializing detail map");
+  var latLng = new google.maps.LatLng;
+  latLng = new google.maps.LatLng(App.day.items[0].place.lat, App.day.items[0].place.lng);
+
+  //  MAP OPTIONS
+  var options = {
+    center: latLng,
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var marker = new google.maps.Marker({
+    position: latLng
+  });
+
+  //  SET MAP & POINTS
+  App.detailMap = new google.maps.Map($("#detail-map-canvas")[0],
+    options);
+  marker.setMap(App.detailMap);
+}

@@ -1,6 +1,6 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
+  "name": "CaptainPlanner",
+  "version": "0.1.0",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -29,5 +29,31 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  }
+  },
+  "gitHead": "f79040d4ea80decd6dda6e6f472752bd30c45a8b",
+  "description": "ERROR: No README.md file found!",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bonnerjp/duckdemo.git"
+  },
+  "keywords": [
+    "travel",
+    "ember",
+    "itinerary",
+    "hongkong",
+    "planner",
+    "\"with",
+    "our",
+    "powers",
+    "combined\""
+  ],
+  "author": "bonnerjp@gmail.com",
+  "license": "MIT"
 }
