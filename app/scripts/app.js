@@ -1,19 +1,12 @@
 /*global Ember */
 
-var App = window.App = Ember.Application.create();
+var App = window.App = Ember.Application.create({ LOG_TRANSITIONS: true });
 
 /* Order and include as you please. */
-// require('app/scripts/routes/*');
+require('app/scripts/routes/*');
 // require('app/scripts/controllers/*');
-// require('app/scripts/models/*');
+require('app/scripts/models/*');
 // require('app/scripts/views/*');
+require('app/scripts/components/*');
 
-App.Router.map(function () {
-  // put your routes here
-});
-
-App.IndexRoute = Ember.Route.extend({
-  model: function () {
-    return ['red', 'yellow', 'blue'];
-  }
-});
+var test = App.Itinerary.create({ id: 2, activities: App.fixtures });
