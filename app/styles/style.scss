@@ -1,0 +1,301 @@
+//	import libraries & modules
+@import 'bootstrap';
+@import 'flat-ui';
+@import 'bourbon/bourbon';
+@import 'neat/neat';
+@import 'grid-settings';
+
+//	mixins for replicating features
+@mixin button {
+	@extend .btn;
+	@extend .btn-large;
+	@extend .btn-block;
+}
+
+@mixin important-button {
+	@include button;
+	@extend .btn-primary;
+}
+
+@mixin fancy-button {
+	@include button;
+	@extend .btn-fancy;
+}
+
+@mixin email-input {
+	display: block;
+	height: 20px;
+	line-height:20px;
+	padding-top:18px;
+	padding-bottom:18px;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+@mixin filter-blur {
+	filter: blur(5px);
+	// Browser Specific
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+}
+
+//	v0.1.0 css hackery styles
+
+
+button.top-tab {
+  width: 200px;
+  margin: 30px;
+  float:left;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hero-unit {
+  margin: 20px;
+}
+
+.buttons {
+  margin:auto;
+  width: 400px;
+}
+
+.image {
+  border-radius: 15px;
+  background-image: url("../../images/hong_kong.jpg");
+  background-position: center;
+  background-size: cover;
+  padding: 30px; 
+}
+
+#detail-map-canvas {
+  height:200px;
+  width: 240px;
+  float:right;
+}
+
+.toEmail > input {
+  height:35px;
+}
+
+.active {
+  font-weight: bold;
+  color:red;
+}
+
+section.interface {
+	@include span-columns(12);
+	margin: 1em 0;
+	button {
+		@include important-button;
+		@include span-columns(3 of 12);
+		@include shift(1);
+	}
+	section.email {
+		@include span-columns(3 of 12);
+		@include shift(1);
+		input {
+			@include span-columns(3 of 3);
+		}
+		button {
+			@include button;
+		}
+	}
+}
+
+footer {
+	@include span-columns(12);
+	padding: 2em 0;
+	section.email {
+		@include span-columns(6 of 12);
+		@include shift(3);
+		button {
+			@include span-columns(6 of 6);
+			@include important-button;
+		}
+		input {
+			@include span-columns(6 of 6);	
+		}
+	}
+}
+
+
+//	general presentation layouts for demo
+
+nav {
+	@include span-columns(12);
+}
+
+#map-canvas {
+	width: 800px;
+	height: 350px;
+}
+
+.active {
+	font-weight: bold;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	@include outer-container;
+	background-image: url("../../images/light_wool.png");
+}
+
+body.fuck-normalize {
+	margin:auto;
+}
+
+div.hero-unit {
+	@include span-columns(8);
+	@include shift(2);
+	text-align:center;
+}
+
+//	inputs
+button.action-example {
+	@include important-button;
+}
+
+button.utility-example {
+	@include button;
+}
+button.fancy-example {
+	@include fancy-button;
+}
+	
+input.email-example {
+	@include email-input;
+	@include span-columns(4 of 12);
+}
+
+//	places
+
+div.place {
+	@include span-columns(10);
+	padding: 1em 2em;
+	margin-top: 1em;
+	:last-child { margin-bottom: 1em; }
+	img {
+		@include span-columns(2 of 10);
+		@extend .img-circle;
+	}
+	.blurb {
+		p { color: $base;
+		}
+	}
+	cursor: pointer;
+	@include border-radius(6px);
+	@include transition(all .125s);
+	background-color: $lightgray;
+	border: 2px solid $gray;
+	&:hover {
+		border: 2px solid $firm;
+		.blurb > h1 { color: $firm; }
+	}
+}
+.arrow {
+			margin-top:3em;
+			width: 0;
+			height: 0;
+			border-left: 50px solid transparent;
+			border-right: 50px solid transparent;
+			// @include span-columns(2 of 10);
+			float:right;
+			&.up {
+				border-bottom: 50px solid $base;
+				&:hover {
+					border-bottom: 50px solid $firm;
+				}
+			}
+			&.down {
+				border-top: 50px solid $base;
+				&:hover {
+					border-top: 50px solid $firm;
+				}
+			}
+		}
+
+div.place-box {
+	margin-top:2em;
+	display:block;
+	background-image: url("https://dl.dropboxusercontent.com/u/27634/flower_market.jpg");
+	background-size: cover;
+	height: 600px;
+	padding: 1em 0;
+	@include animation(all .125s);
+	@include span-columns(12);
+	@include border-radius(6px);
+	border: 2px solid $gray;
+	&.blurred { @include filter-blur; }
+	div.place {
+		@include span-columns(10 of 12);
+		@include shift(1);
+		img { @include span-columns(2 of 10); }
+		.blurb {
+			@include span-columns(8 of 10);
+			@include omega();
+		}
+	}
+	div.place-detail {
+		@include animation(all .125s);
+		padding:1px;
+		@include span-columns(10);
+		.actions {
+			@include span-columns(5 of 10);
+		}
+		.map {
+			@include span-columns(5 of 10);
+			@include omega();
+			height: 200px;
+		}
+		ul { font-style: italic; }
+	}
+}
+
+//	headers
+#logo {
+	background-image: url("../../images/logo.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 40px;
+	width: 40px;
+	display:block;
+}
+nav.mobile {
+	@include span-columns(6);
+	#clipboard {
+		background-image: url("../../images/clipboard.png");
+		background-repeat: no-repeat;
+		background-size: contain;
+		height: 20px;
+		width: 40px;
+		display:block;
+		margin-left: 1em;
+	}
+	#map {
+		background-image: url("../../images/map.png");
+		background-repeat: no-repeat;
+		background-size: contain;
+		height: 20px;
+		width: 40px;
+		display:block;
+	}
+}
+.navbar-unread {
+	@include transform(rotate(12deg));
+	right: -10px;
+	top:5px;
+}
+
+
+//	individual element values
+#place2 {
+	background-image: url("../images/knutsford_terrace.jpg");
+}
+
