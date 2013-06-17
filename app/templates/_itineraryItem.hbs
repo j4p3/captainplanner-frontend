@@ -1,0 +1,11 @@
+<div class="itinerary-item">
+  <p>(Restaurant)</p>
+  {{activity.id}}
+  {{activity.place.name}}
+  {{#if controller.editing}}
+    {{view view.editControls}}
+    {{view view.editToggle}}
+  {{else}}
+    {{view view.editToggle}}
+  {{/if}}
+</div>

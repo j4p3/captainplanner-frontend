@@ -5,13 +5,14 @@ App.Itinerary = Ember.Object.extend({
   // activities: null,  // POINTS TO ACTIVITIES MODEL
   // id: null,            // MATCHES ITINERARY API URI
   //  @todo INITIALIZE THESE WITH INSTANCE VALUES
+  modelFoo: 'bar',
 
   init: function () {
     this._super();
     console.log("new Itinerary initialized with first item " + this.activities[0].place.name); console.dir(this.activities);
 
     //  STORE FOR find()
-    this.set('id', 2);  //  @todo SET DYNAMICALLY
+    this.set('id', this.id);  //  @todo SET DYNAMICALLY
     App.Itinerary.store[this.get('id')] = this;
 
     //  CREATE ACTIVITIES OBJECTS
