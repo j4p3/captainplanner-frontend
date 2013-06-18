@@ -1,0 +1,38 @@
+{{#if view.isSectionStart}}
+  <div class="section-label">
+    <div {{bindAttr class=":icon view.sectionClass"}}></div>
+    <span {{bindAttr class="view.sectionClass"}}><h4>{{capitalize view.sectionClass}}</h4></span>
+  </div>
+  <div class="add-activity"><button>+ Add Activity</button></div>
+{{/if}}
+<div {{bindAttr class=":place view.isRestaurant:restaurant"}}>
+  <img {{bindAttr src="activity.place.img_url"}} style="height:130px; width: 130px;"/>
+  <div class="blurb">
+    <h3>{{activity.place.name}}</h3>
+    {{#if view.isRestaurant}}<i class="icon-food icon-large"></i> 
+    {{else}}<i class="icon-camera-retro icon-large"></i> 
+    {{/if}}
+    {{#each activity.place.place_subtypes}}
+      {{name}}
+    {{/each}}
+    <h1>{{place.name}}</h1>
+    <p>
+      {{#if activity.place.description}}
+        {{activity.place.description}}
+      {{else}}
+        "{{activity.place.reviews.1.text}}"
+      {{/if}}
+    </p>
+  </div>
+  <div class="controls">
+    {{#if controller.editing}}
+      {{#unless view.isRestaurant}}
+       {{view view.editControls}}
+      {{/unless}}
+    {{else}}
+    <button>Replace</button>
+      {{#view view.editToggle}}Move{{/view}}
+      {{#view view.remove}}Delete{{/view}}
+    {{/if}}
+   </div>
+</div>

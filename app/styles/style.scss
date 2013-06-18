@@ -1,9 +1,10 @@
 //	import libraries & modules
-@import 'bootstrap';
+@import 'bootstrap/bootstrap.scss';
 @import 'flat-ui';
 @import 'bourbon/bourbon';
 @import 'neat/neat';
 @import 'grid-settings';
+@import 'font-awesome/font-awesome.scss';
 
 //	mixins for replicating features
 @mixin button {
@@ -32,194 +33,234 @@
 	padding-right:15px;
 }
 
-@mixin filter-blur {
-	filter: blur(5px);
-	// Browser Specific
-	-webkit-filter: blur(5px);
-	-moz-filter: blur(5px);
-	-o-filter: blur(5px);
-	-ms-filter: blur(5px);
-}
-
-//	v0.1.0 css hackery styles
-
-
-button.top-tab {
-  width: 200px;
-  margin: 30px;
-  float:left;
-}
-
-a {
-  text-decoration: none;
-}
-
-.hero-unit {
-  margin: 20px;
-}
-
-.buttons {
-  margin:auto;
-  width: 400px;
-}
-
-.image {
-  border-radius: 15px;
-  background-image: url("../../images/hong_kong.jpg");
-  background-position: center;
-  background-size: cover;
-  padding: 30px; 
-}
-
-#detail-map-canvas {
-  height:200px;
-  width: 240px;
-  float:right;
-}
-
-.toEmail > input {
-  height:35px;
-}
-
-.active {
-  font-weight: bold;
-  color:red;
-}
-
-section.interface {
-	@include span-columns(12);
-	margin: 1em 0;
-	button {
-		@include important-button;
-		@include span-columns(3 of 12);
-		@include shift(1);
-	}
-	section.email {
-		@include span-columns(3 of 12);
-		@include shift(1);
-		input {
-			@include span-columns(3 of 3);
-		}
-		button {
-			@include button;
-		}
-	}
-}
-
-footer {
-	@include span-columns(12);
-	padding: 2em 0;
-	section.email {
-		@include span-columns(6 of 12);
-		@include shift(3);
-		button {
-			@include span-columns(6 of 6);
-			@include important-button;
-		}
-		input {
-			@include span-columns(6 of 6);	
-		}
-	}
-}
-
-
-//	general presentation layouts for demo
-
-nav {
-	@include span-columns(12);
-}
-
-#map-canvas {
-	width: 800px;
-	height: 350px;
-}
-
-.active {
-	font-weight: bold;
-}
+//	general presentation & layout
 
 a {
 	text-decoration: none;
 }
 
 body {
-	@include outer-container;
 	background-image: url("../../images/light_wool.png");
+	height: 100%
 }
 
-body.fuck-normalize {
-	margin:auto;
+.active {
+	font-weight: bold;
 }
 
-div.hero-unit {
-	@include span-columns(8);
-	@include shift(2);
-	text-align:center;
+//	application
+
+.application-wrapper { @include outer-container; }
+
+div.wrapper {
+	@include outer-container;
 }
 
-//	inputs
-button.action-example {
+nav {
+	font-size: 1em;
+	ul.nav { padding: 0px; }
+	.navbar-inner { @include border-radius(0); }
+	span.navbar-unread { @include transform(rotate(15deg));	}
+	.navbar { margin:0px;	}
+}
+
+footer {
+	margin-top:2em;
+	.content { padding: 2em 0; }
+}
+
+#logo {
+	background-image: url("../../images/logo.png");
+	padding:0px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 40px;
+	width: 40px;
+	display:block;
+}
+
+//	generic elements
+
+button {
+	@include button;
+}
+
+button.email {
 	@include important-button;
 }
 
-button.utility-example {
-	@include button;
+button.small{
+	@include span-columns(3);
 }
-button.fancy-example {
-	@include fancy-button;
+
+//	index
+section.index {
+	.index-wrapper {
+		@include outer-container;
+	}
+
+	div.image {
+		@include span-columns(12);
+		background-image: url("../../images/hong_kong.jpg");
+		background-position: center;
+		background-size: cover;
+		padding: 30px;
+	}
+
+		div.hero-unit {
+		@include span-columns(12);
+		text-align:center;
+	}
+
+	div.buttons {
+		@include shift(4);
+	  @include span-columns(4);
+	  button { @include important-button; }
+	}
 }
-	
-input.email-example {
-	@include email-input;
-	@include span-columns(4 of 12);
+
+//	itinerary
+
+section#itinerary {
+	@include outer-container;
+	section.itinerary-control-bar {
+		padding-top: 1em;
+		@include span-columns(12);
+		.plumbing { @include clearfix; }
+		ul {
+			margin-top:3em;
+			li {
+				padding: 8px 0 0 0;
+				@include span-columns(4 of 12);
+				a {
+					text-align:center;
+					font-size: 1.5em;
+					padding-top: 8px;
+					padding-bottom: 8px;
+					line-height: $baseLineHeight;
+					border: 1px solid transparent;
+					@include border-radius(4px 4px 0 0);
+
+					  border-color: $grayLighter $grayLighter #ddd;
+					  background-color: $bodyBackground;
+					
+					&.active,
+					&.active:hover,
+					&.active:focus {
+						background-color: $bodyBackground;
+						border: 1px solid #ddd;
+						border-bottom-color: transparent;
+						cursor: default;
+					}
+				}
+			}
+		}
+		span {
+			@include span-columns(4 of 12);
+			&:first-child { @include span-columns(1 of 12); }
+			&.email { @include shift(3); @include omega; }
+			& > .label { margin: 8px 0;}
+		}
+	}
+	section#itinerary-child {
+		@include span-columns(12);
+		background-color: $bodyBackground;
+		margin-top:-20px;
+		border: 1px solid #ddd;
+		border-top: 0px;
+	}
 }
 
 //	places
 
 div.place {
-	@include span-columns(10);
-	padding: 1em 2em;
+	@include span-columns(11.5 of 12);
+	@include shift(.25);
+	@include border-radius(6px);
+	@include transition(all .125s);
 	margin-top: 1em;
+	cursor: pointer;
+	background-color: $lightgray;
+	border: 2px solid $gray;
 	:last-child { margin-bottom: 1em; }
 	img {
+		margin-left: 1em;
+		margin-top:1.5em;
 		@include span-columns(2 of 10);
 		@extend .img-circle;
 	}
 	.blurb {
-		p { color: $base;
-		}
+		@include span-columns(6 of 10);
+		p { color: $base; }
 	}
-	cursor: pointer;
-	@include border-radius(6px);
-	@include transition(all .125s);
-	background-color: $lightgray;
-	border: 2px solid $gray;
+	.controls {
+		@include animation(all 0s);
+		padding: 1em 1em 0 1em;
+		@include span-columns(2 of 10);
+		button.remove { @include important-button; }
+	}
 	&:hover {
 		border: 2px solid $firm;
 		.blurb > h1 { color: $firm; }
 	}
+	&.restaurant { background-color: $yellow;	}
+	&.start { border-top:red;	}
+	&:last-child { margin-bottom: 2em;	}
 }
 .arrow {
-			margin-top:3em;
-			width: 0;
-			height: 0;
-			border-left: 50px solid transparent;
-			border-right: 50px solid transparent;
-			// @include span-columns(2 of 10);
-			float:right;
-			&.up {
-				border-bottom: 50px solid $base;
-				&:hover {
-					border-bottom: 50px solid $firm;
-				}
-			}
-			&.down {
-				border-top: 50px solid $base;
-				&:hover {
-					border-top: 50px solid $firm;
-				}
-			}
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	float:right;
+	margin-right:16px;
+	&.up {
+		margin-bottom: 5px;
+		border-bottom: 40px solid $base;
+		&:hover {
+			border-bottom: 40px solid $firm;
 		}
+	}
+	&.down {
+		margin-top: 5px;
+		border-top: 40px solid $base;
+		&:hover {
+			border-top: 40px solid $firm;
+		}
+	}
+}
+
+.section-label {
+	@include span-columns(4);
+	@include shift(4);
+	padding-top: 1em;
+	text-align: center;
+	div.icon {
+		@include span-columns(1 of 4);
+		height: 60px;
+		background-size: contain;
+		background-repeat: no-repeat;
+		&.morning { background-image: url("../../images/icon-morning.png"); margin-top:20px; height: 40px; }
+		&.lunch { background-image: url("../../images/icon-lunch.jpg") }
+		&.afternoon { background-image: url("../../images/icon-afternoon.png") }
+		&.dinner { background-image: url("../../images/icon-dinner.jpg") }
+		&.evening { background-image: url("../../images/icon-evening.png") }
+	}
+	span {
+		@include span-columns(3 of 4);
+		padding-top: 20px;
+		&.morning, &.afternoon { color: $base; }
+		&.lunch, &.dinner { color: $firm; }
+		&.evening { color: $blue-dark }
+	}
+}
+
+.add-activity {
+	@include span-columns(2.75);
+	@include shift(1);
+	@include omega;
+	padding-top: 2em;
+}
 
 div.place-box {
 	margin-top:2em;
@@ -232,11 +273,10 @@ div.place-box {
 	@include span-columns(12);
 	@include border-radius(6px);
 	border: 2px solid $gray;
-	&.blurred { @include filter-blur; }
 	div.place {
 		@include span-columns(10 of 12);
 		@include shift(1);
-		img { @include span-columns(2 of 10); }
+		img {@include span-columns(2 of 10); }
 		.blurb {
 			@include span-columns(8 of 10);
 			@include omega();
@@ -258,44 +298,51 @@ div.place-box {
 	}
 }
 
-//	headers
-#logo {
-	background-image: url("../../images/logo.png");
-	background-repeat: no-repeat;
-	background-size: contain;
-	height: 40px;
-	width: 40px;
-	display:block;
-}
-nav.mobile {
-	@include span-columns(6);
-	#clipboard {
-		background-image: url("../../images/clipboard.png");
-		background-repeat: no-repeat;
-		background-size: contain;
-		height: 20px;
-		width: 40px;
-		display:block;
-		margin-left: 1em;
-	}
-	#map {
-		background-image: url("../../images/map.png");
-		background-repeat: no-repeat;
-		background-size: contain;
-		height: 20px;
-		width: 40px;
-		display:block;
-	}
-}
-.navbar-unread {
-	@include transform(rotate(12deg));
-	right: -10px;
-	top:5px;
+//	animation settings
+
+@-webkit-keyframes shake {
+	0%, 100% {-webkit-transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {-webkit-transform: translateX(10px);}
 }
 
-
-//	individual element values
-#place2 {
-	background-image: url("../images/knutsford_terrace.jpg");
+@-moz-keyframes shake {
+	0%, 100% {-moz-transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {-moz-transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {-moz-transform: translateX(10px);}
 }
+
+@-o-keyframes shake {
+	0%, 100% {-o-transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {-o-transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {-o-transform: translateX(10px);}
+}
+
+@keyframes shake {
+	0%, 100% {transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+
+.shake {
+	-webkit-animation-name: shake;
+	-moz-animation-name: shake;
+	-o-animation-name: shake;
+	animation-name: shake;
+}
+
+body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
+	-webkit-backface-visibility: hidden;
+}
+.animated {
+	-webkit-animation-duration: .5s;
+	   -moz-animation-duration: .5s;
+	     -o-animation-duration: .5s;
+	        animation-duration: .5s;
+	-webkit-animation-fill-mode: both;
+	   -moz-animation-fill-mode: both;
+	     -o-animation-fill-mode: both;
+	        animation-fill-mode: both;
+}
+
 

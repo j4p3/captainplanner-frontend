@@ -1,6 +1,6 @@
 App.ItineraryListRoute = Ember.Route.extend({
   model: function () {
-    console.log('ListRoute getting model');
+    console.log('ItineraryListRoute: getting model');
     return App.Itinerary.find(2);
   },
   setupController: function (controller, model) {

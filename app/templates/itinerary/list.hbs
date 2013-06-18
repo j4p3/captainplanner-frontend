@@ -1,11 +1,7 @@
-<section id="itinerary">
+<section id="list">
   {{#view App.ItineraryListView}}
-    <h3>List</h3>
     {{#each activity in model.activities}}
       {{view view.itemView}}
     {{/each}}
-    <span>Model: {{model.modelFoo}}</span>
-    <span>Controller: {{controller.controllerFoo}}</span>
-    <span>View: {{#view App.ItineraryListView}}{{view.viewFoo}}{{/view}}</span>
   {{/view}}
 </section>
