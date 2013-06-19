@@ -8,5 +8,4 @@ require('app/scripts/controllers/*');
 require('app/scripts/models/*');
 require('app/scripts/views/*');
 require('app/scripts/components/*');
-
-var test = App.Itinerary.create({ id: 2, activities: App.fixtures });
+require('app/scripts/cosmetic/*');

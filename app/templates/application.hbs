@@ -1,6 +1,6 @@
 <nav><div class="navbar navbar-inverse"><div class="navbar-inner"><div class="wrapper"><ul class="nav">
   <li>
-      {{#linkTo 'index' id="logo"}}{{/linkTo}}
+      {{#linkTo 'index' class="logo"}}{{/linkTo}}
     </li>
     <li class="active" id="title">
       {{#linkTo 'index'}}Captain Planner{{/linkTo}}
@@ -19,7 +19,13 @@
 
 <footer>
   <div class="wrapper">
-    <div class="content">footer goes here</div>
+    <div class="content">
+      <h4>Copyright 2013 Captain Planner</h4>
+      <span>Made with love and caffeine in Hong Kong.</span>
+    </div>
   </div>
 </footer>
 
+{{#if App.submitting}}
+  {{view App.EmailModalView}}
+{{/if}}

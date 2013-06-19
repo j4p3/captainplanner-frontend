@@ -5,20 +5,46 @@ App.Itinerary = Ember.Object.extend({
   // activities: null,  // POINTS TO ACTIVITIES MODEL
   // id: null,            // MATCHES ITINERARY API URI
   //  @todo INITIALIZE THESE WITH INSTANCE VALUES
-  modelFoo: 'bar',
+  itineraryLoaded: false,
+  activities: null,
 
   init: function () {
+    console.log('Itinerary: initializing');
     this._super();
-    console.log("new Itinerary initialized with first item " + this.activities[0].place.name); console.dir(this.activities);
+    this.id = this.id || 2;
 
-    //  STORE FOR find()
-    this.set('id', this.id);  //  @todo SET DYNAMICALLY
-    App.Itinerary.store[this.get('id')] = this;
+    //  CHECK IF THIS ITINERARY ALREADY LOADED
+    if (!App.Itinerary.find(this.id)) {
+      //  NOT YET LOADED
+      this.load();
+    } else {
+      console.log('Itinerary: object at ' + this.id + ' already exists');
+    }
+  },
 
-    //  CREATE ACTIVITIES OBJECTS
-    this.activities.forEach(function (activity) {
-      App.Activity.create(activity);
-    });
+  load: function (itineraryID) {
+    //  POPULATE A NEW ITINERARY
+    var itineraryID = itineraryID || 2;
+    var itinerary = this;
+    var activities = [];
+    console.log('Itinerary: loading new itinerary at ' + itineraryID);
+
+      $.getJSON('http://captain-planner-dev.herokuapp.com/mvp/itinerary/2/1').then( function (response) {
+        console.log('Itinerary: Activities loaded from server');
+        response.forEach(function (item) {
+          var activity = App.Activity.create(item)
+          console.log('Itinerary: creating activity: ');
+          console.dir(activity);
+          activities.push(activity);
+          });
+
+        //  SET ITINERARY'S PROPERTIES
+        itinerary.setProperties({ id: itineraryID, activities: activities });
+
+        //  STORE FOR find()
+        App.Itinerary.store[itinerary.get('id')] = itinerary;
+        itinerary.set('itineraryLoaded', true);
+      });
   }
 });
 

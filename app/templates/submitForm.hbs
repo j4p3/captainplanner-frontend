@@ -1,0 +1,27 @@
+{{#if view.submitted}}
+<h4>Thanks for your submission!</h4>
+{{else}}
+<div class="modal-header">
+  {{#view view.closeSubmission}}<h4>&times;</h4>{{/view}}
+  <h3>Email Itinerary</h3>
+</div>
+<div class="modal-body">
+  <section>
+    <p>Download a customized itinerary to your email address, complete with directions to and from Ovolo Hotel and btween each attraction.</p>
+    <form>
+      <label for="email">Your email address:</label>
+      {{view Ember.TextField valueBinding="view.email" class="email"}}
+      {{#view view.emailSubmitButtonView}}Send Email{{/view}}
+    </form>
+  </section>
+</div>
+<div class="modal-footer">
+  <p>Share your itinerary on Facebook or Google+ to get a 10% off Cafe O Coupon!</p>
+  <ul>
+    <li class="fb"><i class='icon icon-facebook-sign icon-3x'></i> </li>
+    <li class="gplus"><i class='icon icon-google-plus-sign icon-3x'></i> </li>
+    <li class="twit"><i class='icon icon-twitter-sign icon-3x'></i> </li>
+  </ul>
+</div>
+{{/if}}
+
