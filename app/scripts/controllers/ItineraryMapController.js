@@ -1,20 +1,16 @@
-App.FooView = Ember.View.extend({
-  foo: 'bar',
-  map: null,
+App.ItineraryMapController = Ember.ObjectController.extend({
+  mapSettings: null,
+  rendered: false,
+  tagName: 'div',
+  classNames: ['big-map'],
   init: function () {
     this._super();
-    console.log('Map element rendered, our element is ');
-    console.dir(this);
-    // console.dir(this.get('controller'));
-    // this.get('controller').send('setMap');
-  },
-  didInsertElement: function () {
-    
-    //  @todo DON'T RESET MAP ON LOAD
+
+    console.log('ItineraryMapController: init');
   },
 
   getMapSettings: function () {
-    console.log('MapController getting map variables');
+    console.log('ItineraryMapController getting map variables');
 
     //   MAP VARIABLES
     var mapSettings = {};
@@ -29,11 +25,12 @@ App.FooView = Ember.View.extend({
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    return mapSettings;
+      return mapSettings;
   },
 
   getMapMarkers: function (settings) {
-    console.log('MapController getting map markers');
+    //  CREATE MAP MARKERS FOR CURRENT ITINERARY, RETURN AS OBJECT ARRAY
+    console.log('ItineraryMapController: getting map markers');
 
     App.Itinerary.find(2).activities.forEach( function (item) {
       latLng = new google.maps.LatLng(item.place.lat, item.place.lng)
@@ -46,7 +43,8 @@ App.FooView = Ember.View.extend({
   },
 
   setMap: function () {
-    console.log('MapController setting map');
+    //  BEGIN & END HERE - THIS IS THE CONTROL FLOW FUNCTION
+    console.log('ItineraryMapController: setting map');
     console.log("in setmap, the target element is ");
     console.dir(this.element);
 
@@ -54,9 +52,11 @@ App.FooView = Ember.View.extend({
     var markers = this.getMapMarkers(settings);
 
     //  SET MAP & POINTS
-    var map = new google.maps.Map(this.element,
+    if (this.rendered) {
+      var map = new google.maps.Map(this.element,
         settings['myOptions']);
-    settings['directionsDisplay'].setMap(map);
+      settings['directionsDisplay'].setMap(map);
+    }
   },
 
   getRoute: function () {

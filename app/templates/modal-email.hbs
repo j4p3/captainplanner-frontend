@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <span class="close" id="close">&times;</span
+  <h3>Email Itinerary</h3>
+</div>
+<div class="modal-body">
+  <section>
+    <p>Download a customized itinerary to your email address, complete with directions to and from Ovolo Hotel and btween each attraction.</p>
+    <form>
+      <label for="email">Your email address:</label>
+      {{view Ember.TextField valueBinding="view.input" class="email" type="email"}}
+      {{#view view.submitButtonView}}Send Email{{/view}}
+    </form>
+  </section>
+</div>
+<div class="modal-footer">
+  <p>Share your itinerary on Facebook or Google+ to get a 10% off Cafe O Coupon!</p>
+  <ul>
+    <li class="fb"><i class='icon icon-facebook-sign icon-3x'></i> </li>
+    <li class="gplus"><i class='icon icon-google-plus-sign icon-3x'></i> </li>
+    <li class="twit"><i class='icon icon-twitter-sign icon-3x'></i> </li>
+  </ul>
+</div>

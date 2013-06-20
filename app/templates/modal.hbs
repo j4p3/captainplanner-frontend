@@ -1,0 +1,21 @@
+<div class="modal-header">
+  {{view.headerContent}}
+  <span id="close" class="close">&times;</span>
+</div>
+<div class="modal-body">
+  <span>
+    {{view.bodyContent}}
+  </span>
+</div>
+<div class="modal-footer">
+  <span>{{view.footerContent}}<span>
+  {{#if view.hasForm}}
+    <form>
+      <label for="email">Your email address:</label>
+      {{view Ember.TextField valueBinding="view.input" class="email" type="email"}}
+      {{#view view.submitButtonView}}Send Email{{/view}}
+    </form>
+  {{/if}}
+</div>
+
+

@@ -8,4 +8,6 @@ require('app/scripts/controllers/*');
 require('app/scripts/models/*');
 require('app/scripts/views/*');
 require('app/scripts/components/*');
-require('app/scripts/cosmetic/*');
+// require('app/scripts/libs/*');
+
+App.api = App.API.create();

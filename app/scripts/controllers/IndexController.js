@@ -1,14 +1,14 @@
 App.IndexController = Ember.ObjectController.extend({
   itineraries: [],
   loaded: false,
-  waiting: false,
 
   waitOn: function (itineraryID) {
     var indexController = this;
-    indexController.set('waiting', true);
+    App.set('ModalType', 'modal-wait');
+    App.set('DisplayModal', true);
 
     setTimeout(function () {
-      indexController.set('waiting', false);
+      App.set('DisplayModal', false);
       App.Router.router.transitionTo('itinerary.list');
     }, 5000)
   },

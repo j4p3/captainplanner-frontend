@@ -1,8 +1,8 @@
-App.ItineraryListRoute = Ember.Route.extend({
+App.ItineraryMapRoute = Ember.Route.extend({
   model: function (itinerary_id) {
-    console.log('ItineraryListRoute: getting model');
+    console.log('ItineraryMapRoute: getting model');
     var itinerary_id = itinerary_id || 2;
-    itinerary_id = 2;  //  @todo
+    itinerary_id = 2; //  @TODO CHANGE WHEN MORE ITINS BECOME AVAILABLE
 
     if (!App.Itinerary.find(itinerary_id)) {
       return App.Itinerary.create(itinerary_id);
@@ -10,6 +10,7 @@ App.ItineraryListRoute = Ember.Route.extend({
       return App.Itinerary.find(itinerary_id);
     }
   },
+  
   setupController: function (controller, model) {
     controller.set('model', model);
   }

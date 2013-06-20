@@ -1,9 +1,6 @@
 App.Itinerary = Ember.Object.extend({
 //  SET INSTANCE METHODS & PROPERTIES
-//  note - itinerary creation assumes an array of activities
 
-  // activities: null,  // POINTS TO ACTIVITIES MODEL
-  // id: null,            // MATCHES ITINERARY API URI
   //  @todo INITIALIZE THESE WITH INSTANCE VALUES
   itineraryLoaded: false,
   activities: null,
@@ -12,11 +9,12 @@ App.Itinerary = Ember.Object.extend({
     console.log('Itinerary: initializing');
     this._super();
     this.id = this.id || 2;
+    console.log('id ' + this.id);
 
     //  CHECK IF THIS ITINERARY ALREADY LOADED
     if (!App.Itinerary.find(this.id)) {
       //  NOT YET LOADED
-      this.load();
+      this.load(this.id);
     } else {
       console.log('Itinerary: object at ' + this.id + ' already exists');
     }
@@ -27,24 +25,25 @@ App.Itinerary = Ember.Object.extend({
     var itineraryID = itineraryID || 2;
     var itinerary = this;
     var activities = [];
+    itineraryID = 2;  //  @ TODO ELIMINATE FOR MULTI ITINERARIES
     console.log('Itinerary: loading new itinerary at ' + itineraryID);
 
-      $.getJSON('http://captain-planner-dev.herokuapp.com/mvp/itinerary/2/1').then( function (response) {
-        console.log('Itinerary: Activities loaded from server');
-        response.forEach(function (item) {
-          var activity = App.Activity.create(item)
-          console.log('Itinerary: creating activity: ');
-          console.dir(activity);
-          activities.push(activity);
-          });
+    $.getJSON('http://captain-planner-dev.herokuapp.com/mvp/itinerary/2/1').then( function (response) {
+      console.log('Itinerary: Activities loaded from server');
+      response.forEach(function (item) {
+        var activity = App.Activity.create(item)
+        console.log('Itinerary: creating activity: ');
+        console.dir(activity);
+        activities.push(activity);
+        });
 
-        //  SET ITINERARY'S PROPERTIES
-        itinerary.setProperties({ id: itineraryID, activities: activities });
+      //  SET ITINERARY'S PROPERTIES
+      itinerary.setProperties({ id: itineraryID, activities: activities });
 
-        //  STORE FOR find()
-        App.Itinerary.store[itinerary.get('id')] = itinerary;
-        itinerary.set('itineraryLoaded', true);
-      });
+      //  STORE FOR find()
+      App.Itinerary.store[itinerary.get('id')] = itinerary;
+      itinerary.set('itineraryLoaded', true);
+    });
   }
 });
 

@@ -102,18 +102,19 @@ section.index {
 	}
 
 		div.hero-unit {
-		text-align:center;
+			@include span-columns(8);
+			@include shift(2);
+			text-align:center;
 	}
 
 	div.buttons {
-		@include shift(2);
-		@include span-columns(8);
+		@include span-columns(6 of 8);
+		@include shift(1);
 		button {
 			@include important-button;
-			@include span-columns(4 of 8);
+			@include span-columns(3 of 6);
 			@include omega(2n);
 			margin-top: 1em;
-			font-weight:bold;
 		}
 	}
 }
@@ -307,17 +308,19 @@ div.loader-widget {
 	section { @include span-columns(8 of 12); }
 }
 
-div.email-widget {
+div.modal {
 	.modal-header {
 		background-color: $firm;
 		color: white;
 		@include border-top-radius(6px);
+		@include clearfix;
 	}
 	form {
 		input.email {
 			@include email-input;
 			@include span-columns(9);
 		}
+		label { text-align: left; }
 	}
 	ul {
 		@include clearfix; 
@@ -329,9 +332,11 @@ div.email-widget {
 		}
 	}
 	span.close {
-		@include border-radius(2px);
+		padding: 5px;
+		@include border-radius(6px);
 		border: 1px solid $lightgray;
 		font-size: 2em;
+		margin-top:0;
 	}
 }
 

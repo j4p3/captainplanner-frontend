@@ -1,100 +1,53 @@
-App.submitting = null;
+App.DisplayModal = false;
+App.ModalType = 'modal-wait';
+
+App.Modal = Ember.View.extend({
+  //  GENERIC APP-WIDE MODAL
+  //  TO CREATE A MODAL, DEFINE A NEW PROPERTY WITH ITS CONTENT, SET ITS NAME AS THE MODAL STATE
+  init: function () {
+    this._super();
+    this.set('templateName', App.get('ModalType'));
+  },
+  templateName: null,
+  classNames: ['modal'],
+  templateNameChanged: function () {
+    this.rerender();
+  }.observes('templateName'),
+
+  click: function (evt) {
+    console.dir(evt.target);
+    if (evt.target.id === 'close') { App.set('DisplayModal', false) }
+  },
+
+  submitButtonView: Ember.View.extend({
+    tagName: 'button',
+    classNames: ['email', 'small'],
+
+    click: function () {
+      console.log('GlobalViews: modal submit clicked');
+      this.get('parentView').set('input', '');
+
+      //  THIS COULD BE MORE DYNAMIC.
+      App.api.submitItinerary(this.get('parentView').get('input'));
+      
+
+      App.set('ModalType', 'modal-wait');
+      this.get('parentView').set('templateName', 'modal-wait');
+
+      setTimeout(function () {
+        App.set('DisplayModal', false);
+      }, 2000);
+      return false;
+    }
+  }),
+});
 
 App.EmailButtonView = Ember.View.extend({
   classNames: ['email'],
   tagName: 'button',
   click: function () {
     console.log('emailButton clicked');
-    App.set('submitting', true);
+    App.set('ModalType', 'modal-email');
+    App.set('DisplayModal', true);
   }
 });
-
-App.EmailModalView = Ember.View.extend({
-  templateName: 'submitForm',
-  classNames: ['modal', 'email-widget'],
-  email: null,
-  submitted: false,
-
-  emailSubmitButtonView: Ember.View.extend({
-    tagName: 'button',
-    classNames: ['email', 'small'],
-    click: function () {
-      console.log('GlobalViews (email submission): submitting email');
-      var view = this;
-      App.submit(this.get('parentView').get('email'));
-      this.get('parentView').set('email', '');
-      this.get('parentView').set('submitted', true);
-      setTimeout(function () {
-        App.set('submitting', false);
-        view.get('parentView').set('submitted', false);
-      }, 2000);
-      return false;
-    }
-  }),
-
-  closeSubmission: Ember.View.extend({
-    tagName: 'span',
-    classNames: ['close'],
-    click: function () {
-      App.set('submitting', false);
-    }
-  })
-});
-
-App.LoaderWidgetView = Ember.View.extend({
-  templateName: '_loaderWidget',
-  classNames: ['loader', 'widget']
-});
-
-App.LoaderModalView = Ember.View.extend({
-  templateName: '_loaderWidget',
-  classNames: ['loader', 'modal']
-});
-
-App.submit = function (email) {
-    console.log("delivering itinerary to backend");
-    $.post({
-    url: "http://captain-planner-dev.herokuapp.com/mvp/email",
-    data: JSON.stringify({
-      email: email,
-      itinerary: {
-        days: {
-          activities: [
-            {
-              place_id: App.Itinerary.find(2).activities[0].place.id,
-              day_section_id: App.Itinerary.find(2).activities[0].day_section.id
-            },
-            {
-              place_id: App.Itinerary.find(2).activities[1].place.id,
-              day_section_id: App.Itinerary.find(2).activities[1].day_section.id
-            },
-            {
-              place_id: App.Itinerary.find(2).activities[2].place.id,
-              day_section_id: App.Itinerary.find(2).activities[2].day_section.id
-            },
-            {
-              place_id: App.Itinerary.find(2).activities[3].place.id,
-              day_section_id: App.Itinerary.find(2).activities[3].day_section.id
-            },
-            {
-              place_id: App.Itinerary.find(2).activities[4].place.id,
-              day_section_id: App.Itinerary.find(2).activities[4].day_section.id
-            },
-            {
-              place_id: App.Itinerary.find(2).activities[5].place.id,
-              day_section_id: App.Itinerary.find(2).activities[5].day_section.id
-            },
-          ]
-        }
-      }
-    }),
-    success: App.success,
-    dataType: "json"
-  });
-}
-
-App.success = function () {
-  //  do nothing
-  console.log('success');
-}
-

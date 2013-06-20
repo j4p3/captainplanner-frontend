@@ -2,20 +2,18 @@
   <div class="image">
     <div class="wrapper">
       <div class="hero-unit">
-      <h1>instant one-day adventure!</h1>
-      <p>choose a trip</p>
+        <h1>instant one-day adventure!</h1>
+        <p>choose a trip</p>
+        {{#if controller.loaded}}
+          <div class="buttons">
+            {{#each itinerary in controller.itineraries}}
+              {{#view view.itineraryButton}}{{itinerary.description}}{{/view}}
+            {{/each}}
+          </div>
+        {{else}}
+          <i class="icon-spinner icon-spin icon-large"></i> 
+        {{/if}}
       </div>
-      {{#if controller.loaded}}
-        <div class="buttons">
-          {{#each itinerary in controller.itineraries}}
-            {{#view view.itineraryButton}}{{itinerary.description}}{{/view}}
-          {{/each}}
-        </div>
-      {{else}}
-        {{view App.LoaderWidgetView}}
-      {{/if}}
+    </div>
   </div>
 </section>
-{{#if waiting}}
-  {{view App.LoaderModalView}}
-{{/if}}
