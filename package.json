@@ -40,7 +40,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "coffee web.coffee"
+    "test": "coffee web.coffee",
+    "web": "coffee web.coffee"
   },
   "repository": {
     "type": "git",
