@@ -34,8 +34,7 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "gitHead": "22bf72f3b27121b86fc3351710a40ea0a0d43169",
-  "description": "ERROR: No README.md file found!",
+  "description": "Captain Planner, he's a hero",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"
@@ -52,8 +51,7 @@
     "ember",
     "frontend",
     "itinerary",
-    "\"hong",
-    "kong\"",
+    "hong hong",
     "planner"
   ],
   "author": "JP Bonner <bonnerjp@gmail.com>",
