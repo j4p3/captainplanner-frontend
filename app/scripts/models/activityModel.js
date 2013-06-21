@@ -1,6 +1,11 @@
 App.Activity = Ember.Object.extend({
+  place: null,
+  day_section: null,
+
   init: function () {
     console.log("new Activity initialized with place " + this.place.name);
+    this.set('place', App.Place.create(this.place));
+    this.set('day_section', this.day_section);
     App.Activity.store[this.id] = this;
   }
 });

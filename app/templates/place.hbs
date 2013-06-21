@@ -1,0 +1,56 @@
+{{#with model}}
+<section class="place-detail">
+  <div class="main">
+    <div class="text">
+    <h3>{{name}}</h3>
+    <div class="info">
+      <table>
+        <tr>
+          <td>Category</td>
+          <td>{{capitalize place_category.name}}</td>
+        </tr>
+        <tr>
+          <td rowspan=2>Address</td>
+          <td>{{address}}</td><tr><td>{{address_2}}</td></tr>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>{{phone}}</td>
+        </tr>
+        <tr>
+          <td>Website</td>
+          <td><a {{bindAttr href=website}}>{{website}}</a></td>
+        </tr>
+        <tr>
+          <td>Rating</td>
+          <td>
+            <tr>
+              {{#each place_ratings}}
+              <td>{{rating}}</td>
+              {{/each}}
+            </tr>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="media">
+    <img {{bindAttr src=img_url}}>
+  </div>
+  </div>
+  <div class="reviews">
+    {{#each reviews}}
+      <div class="meta">
+        {{#each review_ratings}}
+          <span>{{rating}}</span>
+        {{/each}}
+        <span>{{written_at}}</span>
+        <span>{{author_name}}</span>
+      </div>
+      <div class="content">
+        {{text}}
+      </div>
+    {{/each}}
+  </div>
+</section>
+{{/with}}

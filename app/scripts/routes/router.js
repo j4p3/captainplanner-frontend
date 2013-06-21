@@ -4,5 +4,6 @@ App.Router.map(function () {
     this.route('map');
     this.route('alts');
   });
-  this.route('activity');
+  this.route('activity', { path: 'activity/:activity_id'});
+  this.route('place', { path: 'place/:place_id'});
 });

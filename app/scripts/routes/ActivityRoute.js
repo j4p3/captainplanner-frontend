@@ -1,7 +1,11 @@
 App.ActivityRoute = Ember.Route.extend({
-  model: function (params) {
-    console.log('ActivityRoute getting model');
-    console.dir(App.Activity.find(31));
-    return App.Activity.find(31);
+  redirect: function (params) {
+    console.log('ActivityRoute: REDIRECTING to');
+    console.dir(params.place);
+    // var place = App.Place.find(params.place.id);
+    // place.one('didLoad', this, function () {
+    //     this.transitionTo('places.place', place);
+    // });
+    this.transitionTo('places.place', params.place);
   }
 });

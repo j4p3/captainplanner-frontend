@@ -298,11 +298,33 @@ div.place-box {
 	}
 }
 
+section.place-detail {
+	@include outer-container;
+	.main {
+		.text {
+			@include span-columns(8);
+		}
+		.media {
+			@include span-columns(4);
+		}
+	}
+	.reviews {
+		@include span-columns(12);
+		& > span { @include span-columns(3 of 12); }
+	}
+}
+
 //	map
 
 .big-map {
 	height:400px;
+	div { box-sizing: content-box; }
 	@include span-columns(12);
+	img { max-width: none; }
+	label {
+		 width: auto;
+		 display:inline;
+	}
 }
 
 //	loaders & widgets

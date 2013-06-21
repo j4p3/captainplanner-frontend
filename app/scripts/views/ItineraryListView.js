@@ -24,7 +24,11 @@ App.ItineraryListView = Ember.View.extend({
       }
     }.property('isRestaurant'),
 
-      didInsertElement: function () {
+    click: function () {
+      console.dir(this.get('controller').get('model'));
+    },
+
+    didInsertElement: function () {
     console.log("DIDINSERT: ITEM");
   },
 

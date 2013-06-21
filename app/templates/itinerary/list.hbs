@@ -1,7 +1,9 @@
 <section id="list">
   {{#view App.ItineraryListView}}
-    {{#each activity in model.activities}}
-      {{view view.itemView}}
+    {{#each activity in activities}}
+      {{#linkTo place activity.place}}
+        {{view view.itemView}}
+      {{/linkTo}}
     {{/each}}
   {{/view}}
 </section>
