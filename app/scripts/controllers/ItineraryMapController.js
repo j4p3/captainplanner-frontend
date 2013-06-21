@@ -30,22 +30,28 @@ App.ItineraryMapController = Ember.ObjectController.extend({
     //  CREATE MAP MARKERS FOR CURRENT ITINERARY, RETURN AS OBJECT ARRAY
     console.log('ItineraryMapController: getting map markers');
     var mapSettings = this.get('mapSettings');
-
     var controller = this;
+    var i = 0;
+
     this.get('model').activities.forEach( function (item) {
-      latLng = new google.maps.LatLng(item.place.lat, item.place.lng)
+      i+=1;
+      var image = '../images/markers/'+i+'.png';
+      latLng = new google.maps.LatLng(item.place.lat, item.place.lng);
+      
+
       var marker = new google.maps.Marker({
-        position: latLng
+        position: latLng,
+        icon: image
       });
       mapSettings.markers.push(marker);
     });
+    
     this.set('mapSettings', mapSettings);
     console.dir(this.get('mapSettings.markers'));
   },
 
   mapConfig: function () {
     //  SETUP MAP (TRIGGERED ONCE, WAIT UNTIL MODEL LOAD)
-
     console.log('ItineraryMapController: mapConfig polling for model load');
 
     if (this.get('model.loaded')) {
