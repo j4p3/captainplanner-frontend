@@ -12,6 +12,7 @@ App.ItineraryMapRoute = Ember.Route.extend({
   },
   
   setupController: function (controller, model) {
+    console.log('ItineraryMapRoute: setting up controller');
     controller.set('model', model);
   }
 });

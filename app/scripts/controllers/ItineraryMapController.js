@@ -1,62 +1,67 @@
 App.ItineraryMapController = Ember.ObjectController.extend({
-  mapSettings: null,
-  rendered: false,
+  mapSettings: {},
   tagName: 'div',
   classNames: ['big-map'],
+  loaded: false,
+  
   init: function () {
     this._super();
-
-    console.log('ItineraryMapController: init');
+    console.log('ItineraryMapController: initializing');
+    this.mapConfig();
   },
 
   getMapSettings: function () {
-    console.log('ItineraryMapController getting map variables');
+    console.log('ItineraryMapController: getting map variables');
 
-    //   MAP VARIABLES
-    var mapSettings = {};
-
-    mapSettings['markers'] = [];
-    mapSettings['directionsService'] = new google.maps.DirectionsService();
-    mapSettings['directionsDisplay'] = new google.maps.DirectionsRenderer();
-    mapSettings['latLng'] = new google.maps.LatLng;
-    mapSettings['myOptions'] = {
-      center: new google.maps.LatLng(App.Itinerary.find(2).activities[0].place.lat, App.Itinerary.find(2).activities[0].place.lng),
+    this.mapSettings.markers = [];
+    this.mapSettings.directionsService = new google.maps.DirectionsService();
+    this.mapSettings.directionsDisplay = new google.maps.DirectionsRenderer();
+    this.mapSettings.myOptions = {
+      center: new google.maps.LatLng(
+        this.get('model').activities[0].place.lat,
+        this.get('model').activities[0].place.lng),
       zoom: 13,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
-      return mapSettings;
+    console.dir(this.get('mapSettings'));
   },
 
-  getMapMarkers: function (settings) {
+  getMapMarkers: function () {
     //  CREATE MAP MARKERS FOR CURRENT ITINERARY, RETURN AS OBJECT ARRAY
     console.log('ItineraryMapController: getting map markers');
+    var mapSettings = this.get('mapSettings');
 
-    App.Itinerary.find(2).activities.forEach( function (item) {
+    var controller = this;
+    this.get('model').activities.forEach( function (item) {
       latLng = new google.maps.LatLng(item.place.lat, item.place.lng)
       var marker = new google.maps.Marker({
         position: latLng
       });
-      settings.markers.push(marker);
+      mapSettings.markers.push(marker);
     });
-    return settings;
+    this.set('mapSettings', mapSettings);
+    console.dir(this.get('mapSettings.markers'));
   },
 
-  setMap: function () {
-    //  BEGIN & END HERE - THIS IS THE CONTROL FLOW FUNCTION
-    console.log('ItineraryMapController: setting map');
-    console.log("in setmap, the target element is ");
-    console.dir(this.element);
+  mapConfig: function () {
+    //  SETUP MAP (TRIGGERED ONCE, WAIT UNTIL MODEL LOAD)
 
-    var settings = this.getMapSettings();
-    var markers = this.getMapMarkers(settings);
+    console.log('ItineraryMapController: mapConfig polling for model load');
 
-    //  SET MAP & POINTS
-    if (this.rendered) {
-      var map = new google.maps.Map(this.element,
-        settings['myOptions']);
-      settings['directionsDisplay'].setMap(map);
+    if (this.get('model.loaded')) {
+      console.log('ItineraryMapController: mapConfig configuring map settings');
+      console.dir(this.get('model.loaded'));
+      this.getMapSettings();
+      this.getMapMarkers();
+      this.set('loaded', true);
+    } else {
+      console.dir(this.get('model'));
+      var controller = this;
+      setTimeout(function () {
+        controller.mapConfig();
+      }, 500);
     }
+    
   },
 
   getRoute: function () {

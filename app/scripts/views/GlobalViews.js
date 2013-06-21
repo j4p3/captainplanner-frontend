@@ -8,6 +8,9 @@ App.Modal = Ember.View.extend({
     this._super();
     this.set('templateName', App.get('ModalType'));
   },
+  didInsertElement: function () {
+    console.log("DIDINSERT: MODAL");
+  },
   templateName: null,
   classNames: ['modal'],
   templateNameChanged: function () {

@@ -1,7 +1,5 @@
 <section id="map">
-  <h4>Map</h4>
-  {{model}}
-  {{controllerData}}
-  {{view App.ItineraryMapView}}
-  {{view.viewData}}
+  {{#view App.ItineraryMapView}}
+    {{view view.mapView}}
+  {{/view}}
 </section>

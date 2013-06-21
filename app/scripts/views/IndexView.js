@@ -1,7 +1,14 @@
 App.IndexView = Ember.View.extend({
+  didInsertElement: function () {
+    console.log("DIDINSERT: INDEX");
+  },
 
   itineraryButton: Ember.View.extend({
     tagName: 'button',
+
+    didInsertElement: function () {
+    console.log("DIDINSERT: BUTTON");
+  },
 
     click: function () {
       console.log('IndexView: itineraryButton clicked');

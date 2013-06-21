@@ -298,6 +298,13 @@ div.place-box {
 	}
 }
 
+//	map
+
+.big-map {
+	height:400px;
+	@include span-columns(12);
+}
+
 //	loaders & widgets
 
 div.loader-widget {

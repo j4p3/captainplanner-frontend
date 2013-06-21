@@ -24,6 +24,10 @@ App.ItineraryListView = Ember.View.extend({
       }
     }.property('isRestaurant'),
 
+      didInsertElement: function () {
+    console.log("DIDINSERT: ITEM");
+  },
+
     isSectionStart: function () {
       //  IS THIS THE FIRST ITEM OF ITS day_section IN THE ARRAY?
       var thisSection = this.get('section');

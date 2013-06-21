@@ -2,7 +2,7 @@ App.Itinerary = Ember.Object.extend({
 //  SET INSTANCE METHODS & PROPERTIES
 
   //  @todo INITIALIZE THESE WITH INSTANCE VALUES
-  itineraryLoaded: false,
+  loaded: false,
   activities: null,
 
   init: function () {
@@ -30,7 +30,7 @@ App.Itinerary = Ember.Object.extend({
 
     $.getJSON('http://captain-planner-dev.herokuapp.com/mvp/itinerary/2/1').then( function (response) {
       console.log('Itinerary: Activities loaded from server');
-      response.forEach(function (item) {
+      response.activities.forEach(function (item) {
         var activity = App.Activity.create(item)
         console.log('Itinerary: creating activity: ');
         console.dir(activity);
@@ -42,7 +42,7 @@ App.Itinerary = Ember.Object.extend({
 
       //  STORE FOR find()
       App.Itinerary.store[itinerary.get('id')] = itinerary;
-      itinerary.set('itineraryLoaded', true);
+      itinerary.set('loaded', true);
     });
   }
 });
