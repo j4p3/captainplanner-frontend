@@ -35,7 +35,7 @@ App.ItineraryMapController = Ember.ObjectController.extend({
 
     this.get('model').activities.forEach( function (item) {
       i+=1;
-      var image = '../images/markers/'+i+'.png';
+      var image = '../../images/markers/'+i+'.png';
       latLng = new google.maps.LatLng(item.place.lat, item.place.lng);
 
       var marker = new google.maps.Marker({
