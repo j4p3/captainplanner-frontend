@@ -33,7 +33,7 @@ App.ItineraryMapController = Ember.ObjectController.extend({
 
     this.get('model').activities.forEach( function (item) {
       i+=1;
-      var image = '../../markers/'+i+'.png';
+      var image = 'http://dl.dropboxusercontent.com/u/27634/markers/'+i+'.png';
       latLng = new google.maps.LatLng(item.place.lat, item.place.lng);
 
       var marker = new google.maps.Marker({
@@ -44,7 +44,7 @@ App.ItineraryMapController = Ember.ObjectController.extend({
       });
       mapSettings.markers.push(marker);
     });
-
+    
     this.set('mapSettings', mapSettings);
     console.dir(this.get('mapSettings.markers'));
   },
