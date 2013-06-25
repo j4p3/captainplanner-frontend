@@ -18,7 +18,7 @@ App.IndexView = Ember.View.extend({
       if (!App.Itinerary.find(id)) {
         console.log('IndexView: that itinerary does not exist. Creating.');
         App.Itinerary.create(id);
-        this.get('controller').send('waitOn', id);
+        this.get('controller').send('wait');
       } else {
         console.log('IndexView: that itinerary exists or has finished loading');
         App.Router.router.transitionTo('itinerary.list');

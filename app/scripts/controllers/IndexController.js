@@ -2,15 +2,21 @@ App.IndexController = Ember.ObjectController.extend({
   itineraries: [],
   loaded: false,
 
-  waitOn: function (itineraryID) {
-    var indexController = this;
+  wait: function () {
     App.set('ModalType', 'modal-wait');
     App.set('DisplayModal', true);
 
-    setTimeout(function () {
+    if (App.Itinerary.find(2).loaded) {
+      console.log('model loaded');
       App.set('DisplayModal', false);
       App.Router.router.transitionTo('itinerary.list');
-    }, 5000)
+    } else {
+      console.log('model not loaded');
+      var controller = this;
+      setTimeout(function () {
+        controller.wait();
+      }, 500);
+    }
   },
 
   submit: function () {
