@@ -1,8 +1,9 @@
 App.Place = Ember.Object.extend({
-  foo: 'bar',
+  loaded: false,
   init: function () {
     console.log("new Place initialized: " + this.name);
     App.Place.store[this.id] = this;
+    this.set('loaded', true);
   }
 });
 

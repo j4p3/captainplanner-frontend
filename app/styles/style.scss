@@ -300,17 +300,36 @@ div.place-box {
 
 section.place-detail {
 	@include outer-container;
+	padding-top: 3em;
 	.main {
+		@include outer-container;
+		background-color: $bodyBackground;
 		.text {
 			@include span-columns(8);
+			.info {
+				table > tbody {
+					.double { vertical-align: top; }
+					& > tr > td:first-child {
+						font-weight: bold;
+						padding-right: 3em;
+						&.normal { font-weight: normal; }
+					}
+				}
+			}
 		}
-		.media {
-			@include span-columns(4);
-		}
+		.media { @include span-columns(4); }
+		.little-map { height: 130px; }
 	}
 	.reviews {
-		@include span-columns(12);
-		& > span { @include span-columns(3 of 12); }
+		.review {
+			@include span-columns(12);
+			padding: 1em;
+			margin: 1em 0;
+			background-color: $bodyBackground;
+			&:last-child { margin-bottom: 2em; }
+			.meta { font-weight: bold; }
+			.content { padding: 1em; }
+		}
 	}
 }
 

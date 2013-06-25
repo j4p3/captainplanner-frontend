@@ -1,3 +1,5 @@
+//  GENERIC, GLOBAL SCOPE COMPONENTS & VARS
+
 App.DisplayModal = false;
 App.ModalType = 'modal-wait';
 

@@ -1,0 +1,14 @@
+{{#each reviews}}
+<div class="review">
+  <div class="meta">
+    {{#each review_ratings}}
+      {{star rating}}
+    {{/each}}
+    <span class="time">{{time_since written_at}}</span>
+    <span class="author">by {{author_name}}</span>
+  </div>
+  <div class="content">
+    {{text}}
+  </div>
+</div>
+{{/each}}

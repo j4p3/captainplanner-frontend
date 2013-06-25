@@ -1,0 +1,29 @@
+<table>
+  <tbody>
+  <tr>
+    <td>Category</td>
+    <td>{{capitalize place_category.name}}</td>
+  </tr>
+  <tr>
+    <td rowspan=2 class="double">Address</td>
+    <td>{{address}}</td>
+    <tr><td class="normal">{{address_2}}</td></tr>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td>{{phone}}</td>
+  </tr>
+  <tr>
+    <td>Website</td>
+    <td><a {{bindAttr href=website}}>{{website}}</a></td>
+  </tr>
+  <tr>
+    <td>Rating</td>
+    <td>
+      {{#each place_ratings}}
+      {{star rating}}
+      {{/each}}
+    </td>
+  </tr>
+  </tbody>
+</table>
